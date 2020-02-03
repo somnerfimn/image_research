@@ -1,0 +1,28 @@
+CFLAGS = -Wall -Wextra -Werror
+
+NAME = imgcmplib
+
+LIB = imgcmplib.a
+
+HEADER = header.h
+
+SRCS = *.c
+
+OBJ = *.o
+
+all : $(NAME)
+
+$(NAME):
+	gcc -c $(CFLAGS) $(SRCS) $(HEADER)
+	gcc $(CFLAGS) $(SRCS) -I $(HEADER) -o $(NAME)
+	ar rc $(LIB) $(OBJ)
+	@rm -f *.h.gch
+
+clean:
+	@rm -f $(OBJ)
+
+fclean: clean
+	@rm -f $(NAME)
+	@rm -f $(LIB)
+
+re: fclean all
